@@ -6,7 +6,7 @@ class FlutterWebTwain {
     return FlutterWebTwainPlatform.instance.getPlatformVersion();
   }
 
-  WebCameraController getCameraController() {
+  WebTwainController getCameraController() {
     return FlutterWebTwainPlatform.instance.getCameraController();
   }
 }
