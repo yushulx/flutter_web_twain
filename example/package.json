@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dwt": "^17.3.1",
+    "dynamsoft-javascript-barcode": "^9.3.1"
+  }
+}

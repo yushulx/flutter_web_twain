@@ -7,9 +7,12 @@ import 'dart:html' as html show window;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'flutter_web_twain_platform_interface.dart';
+import 'web_camera_controller.dart';
 
 /// A web implementation of the FlutterWebTwainPlatform of the FlutterWebTwain plugin.
 class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
+  // WebCameraController? _controller;
+
   /// Constructs a FlutterWebTwainWeb
   FlutterWebTwainWeb();
 
@@ -22,5 +25,11 @@ class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
   Future<String?> getPlatformVersion() async {
     final version = html.window.navigator.userAgent;
     return version;
+  }
+
+  @override
+  WebCameraController getCameraController() {
+    return WebCameraController();
+    // return _controller!;
   }
 }
