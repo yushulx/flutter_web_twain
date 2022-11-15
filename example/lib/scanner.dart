@@ -35,7 +35,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     } on PlatformException {
       _platformVersion = 'Failed to get platform version.';
     }
-    _controller = _flutterWebTwain.createWebTwainController();
+    _controller = await _flutterWebTwain.createWebTwainController();
     await _controller!.init('node_modules/dwt/dist/',
         't01529gIAAEF7y96DFtTsdlAY26PrA+PaDHGza3MBVgONeEy5epB0gDaCfTXfDdj889kjxcmeUTqFggXqmXQiD6HCOpbc6nEbarlhTAxuLtq7kk0SDL/A3YEOgFhkD/yVH9D1czurEABnQBPg3fgDjkN+e8WTkBFwBjQBxyEDmHSy2TfJQ0HbCElTwBnQBIyQAdQqVJqUJymPngM=');
     setState(() {});
@@ -92,7 +92,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     color: Colors.blue,
                     onPressed: () async {
                       if (_controller != null) {
-                        _controller!.scan(
+                        await _controller!.scan(
                             '{"IfShowUI": false, "PixelType": ${_pixelFormat!.index}}');
                       }
                     },
@@ -103,7 +103,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     color: Colors.blue,
                     onPressed: () async {
                       if (_controller != null) {
-                        _controller!.load();
+                        await _controller!.load();
                       }
                     },
                     child: const Text('Load Documents'))
@@ -148,7 +148,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     color: Colors.blue,
                     onPressed: () async {
                       if (_controller != null) {
-                        _controller!.download(_fileFormat!.index, 'filename');
+                        await _controller!
+                            .download(_fileFormat!.index, 'filename');
                       }
                     },
                     child: const Text('Download Documents')),

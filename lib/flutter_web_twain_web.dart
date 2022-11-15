@@ -27,7 +27,8 @@ class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
 
   /// Returns a [WebTwainController] instance.
   @override
-  WebTwainController createWebTwainController() {
-    return WebTwainController();
+  Future<WebTwainController> createWebTwainController() {
+    final controller = WebTwainController();
+    return Future.value(controller);
   }
 }

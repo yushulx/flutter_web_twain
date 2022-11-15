@@ -29,22 +29,22 @@ class WebTwainController {
   }
 
   /// Destroy the controller.
-  void dispose() {
+  Future<void> dispose() async {
     _webTwainManager.dispose();
   }
 
   /// Scan a document.
-  void scan(String config) {
+  Future<void> scan(String config) async {
     _webTwainManager.scan(config);
   }
 
   /// Load a document.
-  void load() {
+  Future<void> load() async {
     _webTwainManager.load();
   }
 
   /// Save a document.
-  void download(int type, String filename) {
+  Future<void> download(int type, String filename) async {
     _webTwainManager.download(type, filename);
   }
 }

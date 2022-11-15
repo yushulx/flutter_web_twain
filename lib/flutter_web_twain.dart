@@ -6,7 +6,7 @@ class FlutterWebTwain {
     return FlutterWebTwainPlatform.instance.getPlatformVersion();
   }
 
-  WebTwainController createWebTwainController() {
+  Future<WebTwainController?> createWebTwainController() {
     return FlutterWebTwainPlatform.instance.createWebTwainController();
   }
 }
