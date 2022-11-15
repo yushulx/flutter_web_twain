@@ -34,7 +34,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     } on PlatformException {
       _platformVersion = 'Failed to get platform version.';
     }
-    _controller = _flutterWebTwain.getCameraController();
+    _controller = _flutterWebTwain.createWebTwainController();
     await _controller!.init('node_modules/dwt/dist/',
         't01529gIAAEF7y96DFtTsdlAY26PrA+PaDHGza3MBVgONeEy5epB0gDaCfTXfDdj889kjxcmeUTqFggXqmXQiD6HCOpbc6nEbarlhTAxuLtq7kk0SDL/A3YEOgFhkD/yVH9D1czurEABnQBPg3fgDjkN+e8WTkBFwBjQBxyEDmHSy2TfJQ0HbCElTwBnQBIyQAdQqVJqUJymPngM=');
     setState(() {});
@@ -80,8 +80,21 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     MaterialButton(
                         textColor: Colors.white,
                         color: Colors.blue,
-                        onPressed: () async {},
-                        child: const Text('Save File')),
+                        onPressed: () async {
+                          if (_controller != null) {
+                            _controller!.load();
+                          }
+                        },
+                        child: const Text('Load Documents')),
+                    MaterialButton(
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        onPressed: () async {
+                          if (_controller != null) {
+                            _controller!.download(0, 'filename');
+                          }
+                        },
+                        child: const Text('Download Documents')),
                   ]),
             ),
           ])),

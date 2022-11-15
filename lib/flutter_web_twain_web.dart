@@ -11,8 +11,6 @@ import 'web_twain_controller.dart';
 
 /// A web implementation of the FlutterWebTwainPlatform of the FlutterWebTwain plugin.
 class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
-  // WebTwainController? _controller;
-
   /// Constructs a FlutterWebTwainWeb
   FlutterWebTwainWeb();
 
@@ -27,9 +25,9 @@ class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
     return version;
   }
 
+  /// Returns a [WebTwainController] instance.
   @override
-  WebTwainController getCameraController() {
+  WebTwainController createWebTwainController() {
     return WebTwainController();
-    // return _controller!;
   }
 }

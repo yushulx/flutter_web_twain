@@ -28,7 +28,8 @@ abstract class FlutterWebTwainPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  WebTwainController getCameraController() {
-    throw UnimplementedError('getCameraController() has not been implemented.');
+  WebTwainController createWebTwainController() {
+    throw UnimplementedError(
+        'createWebTwainController() has not been implemented.');
   }
 }
