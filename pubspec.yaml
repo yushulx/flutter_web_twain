@@ -1,7 +1,8 @@
 name: flutter_web_twain
-description: A new Flutter plugin project.
+description: A Flutter wrapper for Dynamic Web TWAIN. It provides basic methods for document scan, load and save. 
 version: 0.0.1
-homepage:
+homepage: https://www.dynamsoft.com/web-twain/overview/
+repository: https://github.com/yushulx/flutter_web_twain
 
 environment:
   sdk: '>=2.18.2 <3.0.0'

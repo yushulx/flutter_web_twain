@@ -36,8 +36,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       _platformVersion = 'Failed to get platform version.';
     }
     _controller = await _flutterWebTwain.createWebTwainController();
-    await _controller!.init('node_modules/dwt/dist/',
-        't01529gIAAEF7y96DFtTsdlAY26PrA+PaDHGza3MBVgONeEy5epB0gDaCfTXfDdj889kjxcmeUTqFggXqmXQiD6HCOpbc6nEbarlhTAxuLtq7kk0SDL/A3YEOgFhkD/yVH9D1czurEABnQBPg3fgDjkN+e8WTkBFwBjQBxyEDmHSy2TfJQ0HbCElTwBnQBIyQAdQqVJqUJymPngM=');
+    await _controller!.init('node_modules/dwt/dist/', 'LICENSE-KEY');
     setState(() {});
   }
 
