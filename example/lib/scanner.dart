@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_web_twain/flutter_web_twain.dart';
-import 'package:flutter_web_twain/web_camera_controller.dart';
+import 'package:flutter_web_twain/web_twain_controller.dart';
 import 'package:flutter/material.dart';
 
 class ScannerWidget extends StatefulWidget {
@@ -35,7 +35,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       _platformVersion = 'Failed to get platform version.';
     }
     _controller = _flutterWebTwain.getCameraController();
-    await _controller!.init();
+    await _controller!.init('node_modules/dwt/dist/',
+        't01529gIAAEF7y96DFtTsdlAY26PrA+PaDHGza3MBVgONeEy5epB0gDaCfTXfDdj889kjxcmeUTqFggXqmXQiD6HCOpbc6nEbarlhTAxuLtq7kk0SDL/A3YEOgFhkD/yVH9D1czurEABnQBPg3fgDjkN+e8WTkBFwBjQBxyEDmHSy2TfJQ0HbCElTwBnQBIyQAdQqVJqUJymPngM=');
     setState(() {});
   }
 
@@ -69,7 +70,12 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                     MaterialButton(
                         textColor: Colors.white,
                         color: Colors.blue,
-                        onPressed: () async {},
+                        onPressed: () async {
+                          if (_controller != null) {
+                            _controller!
+                                .scan('{"IfShowUI": false, "PixelType": 0}');
+                          }
+                        },
                         child: const Text('Scan Documents')),
                     MaterialButton(
                         textColor: Colors.white,

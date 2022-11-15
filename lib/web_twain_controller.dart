@@ -15,22 +15,28 @@ class WebTwainController {
   final html.DivElement _twainContainer = html.DivElement();
   final html.DivElement _vidDiv = html.DivElement();
 
-  Future<void> init() async {
-    _twainContainer.style.width = '${640}px';
-    _twainContainer.style.height = '${480}px';
+  Future<void> init(String path, String key) async {
+    // _twainContainer.style.width = '${640}px';
+    // _twainContainer.style.height = '${480}px';
     _vidDiv.children = [_twainContainer];
 
     ui.platformViewRegistry.registerViewFactory(
       _webviewId,
-      (int id) => _vidDiv
+      (int id) => _twainContainer
         ..style.width = '100%'
         ..style.height = '100%',
     );
 
-    _webTwainManager.init();
+    _webTwainManager.init(path, key);
     _twainContainer.id = 'dwtcontrolContainer';
     _webTwainManager.createContainer(_twainContainer);
   }
 
-  void dispose() {}
+  void dispose() {
+    _webTwainManager.dispose();
+  }
+
+  void scan(String config) {
+    _webTwainManager.scan(config);
+  }
 }

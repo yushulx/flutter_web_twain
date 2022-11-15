@@ -17,7 +17,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_barcode_sdk: ^2.1.2
 
   flutter_web_twain:
     # When depending on this package from a real application you should use:
