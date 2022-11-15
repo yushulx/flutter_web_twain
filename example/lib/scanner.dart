@@ -14,7 +14,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
   final FlutterWebTwain _flutterWebTwain = FlutterWebTwain();
   WebTwainController? _controller;
   String _platformVersion = 'Unknown';
-
+  PixelFormat? _pixelFormat = PixelFormat.TWPT_BW;
+  FileFormat? _fileFormat = FileFormat.PDF;
   @override
   void initState() {
     super.initState();
@@ -48,54 +49,110 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             title: const Text('Dynamic Web TWAIN for Flutter'),
           ),
           body: Column(children: [
-            SizedBox(
-              height: 100,
-              child: Row(children: <Widget>[
-                Text(
-                  _platformVersion,
-                  style: const TextStyle(fontSize: 14, color: Colors.black),
-                )
-              ]),
-            ),
             Expanded(
               child: _controller == null
                   ? const CircularProgressIndicator()
                   : HtmlElementView(viewType: _controller!.webviewId),
             ),
             SizedBox(
+              child: Row(children: <Widget>[
+                Radio(
+                  value: PixelFormat.TWPT_BW,
+                  groupValue: _pixelFormat,
+                  onChanged: (PixelFormat? value) {
+                    setState(() {
+                      _pixelFormat = value;
+                    });
+                  },
+                ),
+                const Text('BW'),
+                Radio(
+                  value: PixelFormat.TWPT_GRAY,
+                  groupValue: _pixelFormat,
+                  onChanged: (PixelFormat? value) {
+                    setState(() {
+                      _pixelFormat = value;
+                    });
+                  },
+                ),
+                const Text('Gray'),
+                Radio(
+                  value: PixelFormat.TWPT_RGB,
+                  groupValue: _pixelFormat,
+                  onChanged: (PixelFormat? value) {
+                    setState(() {
+                      _pixelFormat = value;
+                    });
+                  },
+                ),
+                const Text('Color'),
+                const Padding(padding: EdgeInsets.all(10)),
+                MaterialButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    onPressed: () async {
+                      if (_controller != null) {
+                        _controller!.scan(
+                            '{"IfShowUI": false, "PixelType": ${_pixelFormat!.index}}');
+                      }
+                    },
+                    child: const Text('Scan Documents')),
+                const Padding(padding: EdgeInsets.all(10)),
+                MaterialButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    onPressed: () async {
+                      if (_controller != null) {
+                        _controller!.load();
+                      }
+                    },
+                    child: const Text('Load Documents'))
+              ]),
+            ),
+            SizedBox(
               height: 100,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    MaterialButton(
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        onPressed: () async {
-                          if (_controller != null) {
-                            _controller!
-                                .scan('{"IfShowUI": false, "PixelType": 0}');
-                          }
-                        },
-                        child: const Text('Scan Documents')),
-                    MaterialButton(
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        onPressed: () async {
-                          if (_controller != null) {
-                            _controller!.load();
-                          }
-                        },
-                        child: const Text('Load Documents')),
-                    MaterialButton(
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        onPressed: () async {
-                          if (_controller != null) {
-                            _controller!.download(0, 'filename');
-                          }
-                        },
-                        child: const Text('Download Documents')),
-                  ]),
+              child: Row(children: <Widget>[
+                Radio(
+                  value: FileFormat.PDF,
+                  groupValue: _fileFormat,
+                  onChanged: (FileFormat? value) {
+                    setState(() {
+                      _fileFormat = value;
+                    });
+                  },
+                ),
+                const Text('PDF'),
+                Radio(
+                  value: FileFormat.TIFF,
+                  groupValue: _fileFormat,
+                  onChanged: (FileFormat? value) {
+                    setState(() {
+                      _fileFormat = value;
+                    });
+                  },
+                ),
+                const Text('TIFF'),
+                Radio(
+                  value: FileFormat.JPEG,
+                  groupValue: _fileFormat,
+                  onChanged: (FileFormat? value) {
+                    setState(() {
+                      _fileFormat = value;
+                    });
+                  },
+                ),
+                const Text('JPEG'),
+                const Padding(padding: EdgeInsets.all(10)),
+                MaterialButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    onPressed: () async {
+                      if (_controller != null) {
+                        _controller!.download(_fileFormat!.index, 'filename');
+                      }
+                    },
+                    child: const Text('Download Documents')),
+              ]),
             ),
           ])),
     );

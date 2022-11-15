@@ -1,13 +1,8 @@
 @JS('Dynamsoft')
 library dynamsoft;
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:js/js.dart';
 import 'dart:html' as html;
-
 import 'utils.dart';
 
 /// DWT class.
@@ -15,11 +10,8 @@ import 'utils.dart';
 class DWT {
   external static set ResourcesPath(String resourcePath);
   external static set ProductKey(String productKey);
-  external static void RegisterEvent(String event, Function func);
   external static void Load();
   external static void Unload();
-  external static set Containers(List<dynamic> containers);
-  external static dynamic GetWebTwain(String containerId);
   external static void CreateDWTObjectEx(
       dynamic obj, Function success, Function error);
   external static set AutoLoad(bool autoLoad);
