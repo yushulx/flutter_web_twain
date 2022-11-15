@@ -1,3 +1,4 @@
+import 'package:flutter_web_twain/web_twain_controller.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'flutter_web_twain_method_channel.dart';
@@ -25,5 +26,10 @@ abstract class FlutterWebTwainPlatform extends PlatformInterface {
 
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<WebTwainController?> createWebTwainController() {
+    throw UnimplementedError(
+        'createWebTwainController() has not been implemented.');
   }
 }

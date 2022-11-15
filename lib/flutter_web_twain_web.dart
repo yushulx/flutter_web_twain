@@ -7,6 +7,7 @@ import 'dart:html' as html show window;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'flutter_web_twain_platform_interface.dart';
+import 'web_twain_controller.dart';
 
 /// A web implementation of the FlutterWebTwainPlatform of the FlutterWebTwain plugin.
 class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
@@ -22,5 +23,12 @@ class FlutterWebTwainWeb extends FlutterWebTwainPlatform {
   Future<String?> getPlatformVersion() async {
     final version = html.window.navigator.userAgent;
     return version;
+  }
+
+  /// Returns a [WebTwainController] instance.
+  @override
+  Future<WebTwainController> createWebTwainController() {
+    final controller = WebTwainController();
+    return Future.value(controller);
   }
 }
