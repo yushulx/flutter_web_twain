@@ -112,11 +112,11 @@ class WebTwainManager {
       switch (type) {
         case 0:
           _webTwain!.SaveAllAsPDF(
-              filename, allowInterop(() => {}), allowInterop(() => {}));
+              filename, allowInterop(() => {}), allowInterop((code, message) => {print([code, message])}));
           break;
         case 1:
           _webTwain!.SaveAllAsMultiPageTIFF(
-              filename, allowInterop(() => {}), allowInterop(() => {}));
+              filename, allowInterop(() => {}), allowInterop((code, message) => {print([code, message])}));
           break;
         case 2:
           if (_webTwain!
